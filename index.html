@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RMC DE LUXE - Ko'chmas mulk</title>
+    <style>
+        /* --- ASOSIY STILLAR --- */
+        :root {
+            --primary-color: #d4a373; /* Tugmalar uchun och jigarrang */
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+            --font-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            color: var(--text-dark);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 12px 30px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #b88a5e;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        /* --- HEADER --- */
+        header {
+            background: var(--white);
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+            font-size: 24px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .header-icons span {
+            cursor: pointer;
+        }
+
+        /* --- HERO --- */
+        .hero {
+            position: relative;
+            height: 600px;
+            background: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-content {
+            position: relative;
+            color: var(--white);
+            max-width: 600px;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* --- KOMPANIYA HAQIDA --- */
+        .about {
+            padding: 80px 0;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--bg-light);
+            padding: 20px;
+            border-radius: 4px;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-top: 15px;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        /* --- INVESTITSIYA --- */
+        .investment {
+            background: var(--bg-light);
+            padding: 80px 0;
+        }
+
+        .investment-inner {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .investment-text {
+            flex: 1;
+        }
+
+        .investment-text h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .investment-text p {
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .investment-images {
+            flex: 1;
+            display: flex;
+            gap: 20px;
+        }
+
+        .investment-images img {
+            width: 100%;
+            border-radius: 4px;
+        }
+
+        /* --- XIZMATLAR --- */
+        .services {
+            padding: 80px 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .service-item {
+            display: flex;
+            gap: 15px;
+        }
+
+        .service-icon {
+            font-size: 24px;
+            color: var(--primary-color);
+        }
+
+        .service-item h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .service-item p {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        /* --- KONSALTING --- */
+        .consulting {
+            background: var(--bg-light);
+            padding: 80px 0;
+        }
+
+        .consulting-inner {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .consulting-text {
+            flex: 1;
+        }
+
+        .consulting-text h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .consulting-text p {
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .consulting-image {
+            flex: 1;
+        }
+
+        .consulting-image img {
+            width: 100%;
+            border-radius: 4px;
+        }
+
+        /* --- NEGA BIZ --- */
+        .why-us {
+            padding: 80px 0;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .why-item {
+            background: var(--bg-light);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .why-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .why-item h4 {
+            font-size: 16px;
+        }
+
+        .why-item p {
+            font-size: 13px;
+            color: var(--text-gray);
+        }
+
+        /* --- YANGI QURILGAN UYLAR --- */
+        .new-buildings {
+            padding: 80px 0;
+        }
+
+        .buildings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .building-cards {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .building-card {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            height: 350px;
+        }
+
+        .building-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .building-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .building-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: var(--white);
+        }
+
+        .building-info h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .building-info p {
+            font-size: 14px;
+            color: var(--primary-color);
+        }
+
+        /* --- IPOTEKA --- */
+        .mortgage {
+            padding: 80px 0;
+            background: var(--bg-light);
+        }
+
+        .mortgage-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            margin-bottom: 5px;
+            color: var(--text-gray);
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .mortgage-results {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        /* --- ALOQA --- */
+        .contact {
+            padding: 80px 0;
+        }
+
+        .contact-inner {
+            display: flex;
+            gap: 50px;
+            background: var(--bg-light);
+            padding: 40px;
+            border-radius: 4px;
+        }
+
+        .contact-form {
+            flex: 1;
+        }
+
+        .contact-form h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .contact-image {
+            flex: 1;
+        }
+
+        .contact-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        /* --- BLOG --- */
+        .blog {
+            padding: 80px 0;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .blog-card h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .blog-card p {
+            font-size: 14px;
+            color: var(--text-gray);
+            margin-bottom: 10px;
+        }
+
+        .blog-card a {
+            color: var(--primary-color);
+            font-size: 14px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--bg-light);
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col ul li a {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .cards-grid, .services-grid, .why-grid, .building-cards, .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .investment-inner, .consulting-inner, .contact-inner {
+                flex-direction: column;
+            }
+            .hero-content h1 {
+                font-size: 36px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .cards-grid, .services-grid, .why-grid, .building-cards, .blog-grid, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            nav ul {
+                display: none; /* Mobil menyu uchun keyinchalik JS kerak */
+            }
+            .hero-content h1 {
+                font-size: 28px;
+            }
+            .section-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container header-inner">
+            <div class="logo">
+                <span>|</span> RMC DE LUXE
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Услуги</a></li>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Блог</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <span>🔍</span>
+                <span>👤</span>
+                <span>🌐 Ru</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Найдите идеальное место для жизни</h1>
+            <p>Откройте двери в новый будущий с нами</p>
+            <button class="btn">Подробнее</button>
+        </div>
+    </section>
+
+    <!-- KOMPANIYA HAQIDA -->
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">О компании RMC DE LUXE</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>Аренда</h3>
+                    <p>Прокат и получение объектов недвижимости по самым выгодным условиям.</p>
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Аренда">
+                </div>
+                <div class="card">
+                    <h3>Купля - продажа</h3>
+                    <p>Мы предлагаем разнообразные варианты аренды.</p>
+                    <img src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Купля">
+                </div>
+                <div class="card">
+                    <h3>Управление</h3>
+                    <p>Управление недвижимостью с начислением арендной платы и полным контролем.</p>
+                    <img src="https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Управление">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INVESTITSIYA -->
+    <section class="investment">
+        <div class="container investment-inner">
+            <div class="investment-text">
+                <h2>Инвестиции в недвижимость в Дубае</h2>
+                <p>Недвижимость в Дубае представляет отличные возможности для получения собственного дохода и увеличения капитала.</p>
+                <p>Почему стоит инвестировать? Мы отвечаем рядом и подробно обо всех преимуществах и недвижимости.</p>
+                <p>Наши эксперты помогут вам на всех этапах инвестиционного процесса, обеспечивая максимальную выгоду.</p>
+                <button class="btn">Подробнее</button>
+            </div>
+            <div class="investment-images">
+                <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dubai 1">
+                <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Dubai 2">
+            </div>
+        </div>
+    </section>
+
+    <!-- XIZMATLAR -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title">Что входит в услугу управления недвижимостью</h2>
+            <div class="services-grid">
+                <div class="service-item">
+                    <div class="service-icon">📄</div>
+                    <div>
+                        <h4>Проверка арендодателей</h4>
+                        <p>Проверка арендодателей (кредитная история, рекомендации)</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">📄</div>
+                    <div>
+                        <h4>Подготовка договоров аренды</h4>
+                        <p>Проверка арендодателей (кредитная история, рекомендации)</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">$</div>
+                    <div>
+                        <h4>Сбор арендной платы</h4>
+                        <p>Проверка арендодателей (кредитная история, рекомендации)</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">📩</div>
+                    <div>
+                        <h4>Обработка запросов и жалоб</h4>
+                        <p>Проверка арендодателей (кредитная история, рекомендации)</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">📋</div>
+                    <div>
+                        <h4>Контроль соблюдения условий</h4>
+                        <p>Проверка арендодателей (кредитная история, рекомендации)</p>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon">🔧</div>
+                    <div>
+                        <h4>Организация ремонтных работ</h4>
+                        <p>Проверка арендодателей (кредитная история, рекомендации)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KONSALTING -->
+    <section class="consulting">
+        <div class="container consulting-inner">
+            <div class="consulting-text">
+                <h2>Консалтинг и сопровождение при открытии и регистрации фирмы</h2>
+                <p>Открытие бизнеса в Дубае с нашей помощью — это простой и быстрый процесс! Мы предлагаем полное сопровождение, от выбора визы до регистрации компании.</p>
+                <p>Наши эксперты подскажут, какие шаги вам нужно предпринять для успешного старта вашего бизнеса в ОАЭ.</p>
+                <button class="btn">Подробнее</button>
+            </div>
+            <div class="consulting-image">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Consulting">
+            </div>
+        </div>
+    </section>
+
+    <!-- NEGA BIZ -->
+    <section class="why-us">
+        <div class="container">
+            <h2 class="section-title">Почему выбирают нас</h2>
+            <div class="why-grid">
+                <div class="why-item">
+                    <h4>Опыт и профессионализм</h4>
+                    <p>Мы работаем на рынке недвижимости много лет, предлагая высокое качество услуг.</p>
+                </div>
+                <div class="why-item">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Why 1">
+                </div>
+                <div class="why-item">
+                    <h4>Прозрачность и доверие</h4>
+                    <p>Обеспечиваем полную прозрачность всех операций и предоставляем отчеты.</p>
+                </div>
+                <div class="why-item">
+                    <img src="https://images.unsplash.com/photo-1554469384-e58fac16e23a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Why 2">
+                </div>
+                <div class="why-item">
+                    <h4>Высокий уровень обслуживания</h4>
+                    <p>Мы всегда на связи, чтобы помочь вам в любое время.</p>
+                </div>
+                <div class="why-item">
+                    <img src="https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Why 3">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- YANGI QURILGAN UYLAR -->
+    <section class="new-buildings">
+        <div class="container">
+            <div class="buildings-header">
+                <h2 class="section-title">Новостройки</h2>
+                <div>
+                    <button class="btn-outline" style="padding: 5px 10px; border-radius: 50%;">←</button>
+                    <button class="btn-outline" style="padding: 5px 10px; border-radius: 50%;">→</button>
+                </div>
+            </div>
+            <div class="building-cards">
+                <div class="building-card">
+                    <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Safa One">
+                    <div class="building-info">
+                        <h3>Safa One</h3>
+                        <p>от 1,900,000 $</p>
+                    </div>
+                </div>
+                <div class="building-card">
+                    <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Safa Two">
+                    <div class="building-info">
+                        <h3>Safa Two</h3>
+                        <p>от 3,299,000 $</p>
+                    </div>
+                </div>
+                <div class="building-card">
+                    <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Peninsula Two">
+                    <div class="building-info">
+                        <h3>Peninsula Two</h3>
+                        <p>от 2,425,000 $</p>
+                    </div>
+                </div>
+                <div class="building-card">
+                    <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Marina Vista">
+                    <div class="building-info">
+                        <h3>Marina Vista</h3>
+                        <p>от 1,912,000 $</p>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn">Смотреть все</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- IPOTEKA -->
+    <section class="mortgage">
+        <div class="container">
+            <h2 class="section-title">Рассчитайте ипотеку</h2>
+            <div class="mortgage-grid">
+                <div>
+                    <div class="input-group">
+                        <label>Стоимость недвижимости (у.е.)</label>
+                        <input type="text" placeholder="Введите стоимость">
+                    </div>
+                    <div class="input-group">
+                        <label>Сумма кредита</label>
+                        <input type="text" placeholder="Введите сумму">
+                    </div>
+                    <div class="input-group">
+                        <label>Срок кредита</label>
+                        <input type="text" placeholder="Введите срок">
+                    </div>
+                    <button class="btn">Рассчитать</button>
+                </div>
+                <div class="mortgage-results">
+                    <div class="result-item">
+                        <span>Ежемесячный платеж</span>
+                        <strong>4 410 у.е.</strong>
+                    </div>
+                    <div class="result-item">
+                        <span>Процентная ставка</span>
+                        <strong>24%</strong>
+                    </div>
+                    <div class="result-item">
+                        <span>Сумма кредита</span>
+                        <strong>200 000 у.е.</strong>
+                    </div>
+                    <div class="result-item">
+                        <span>Срок кредита</span>
+                        <strong>28 нояб 2034 г.</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ALOQA -->
+    <section class="contact">
+        <div class="container contact-inner">
+            <div class="contact-form">
+                <h2>Остались вопросы? Свяжитесь с нами</h2>
+                <input type="text" placeholder="ФИО">
+                <input type="text" placeholder="Номер телефона">
+                <input type="email" placeholder="E-mail">
+                <textarea rows="4" placeholder="Ваш вопрос"></textarea>
+                <button class="btn">Отправить</button>
+            </div>
+            <div class="contact-image">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Contact">
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOG -->
+    <section class="blog">
+        <div class="container">
+            <h2 class="section-title">Блог</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Blog 1">
+                    <h4>Тенденции и прогнозы рынка недвижимости на 2024 год</h4>
+                    <p>Подробнее →</p>
+                </div>
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Blog 2">
+                    <h4>Лучшие районы для инвестиций в недвижимость</h4>
+                    <p>Подробнее →</p>
+                </div>
+                <div class="blog-card">
+                    <img src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Blog 3">
+                    <h4>Топ-10 новых жилых комплексов</h4>
+                    <p>Подробнее →</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn">Все статьи</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo" style="margin-bottom: 20px;">
+                        <span>|</span> RMC DE LUXE
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Услуги</h4>
+                    <ul>
+                        <li><a href="#">Купля</a></li>
+                        <li><a href="#">Аренда</a></li>
+                        <li><a href="#">Продажа</a></li>
+                        <li><a href="#">Оценка</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Недвижимость</h4>
+                    <ul>
+                        <li><a href="#">Квартиры</a></li>
+                        <li><a href="#">Новостройки</a></li>
+                        <li><a href="#">Дома и участки</a></li>
+                        <li><a href="#">Коммерческая</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Компания</h4>
+                    <ul>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Блог</a></li>
+                        <li><a href="#">Контакты</a></li>
+                        <li><a href="#">Свяжитесь</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>2024 © RMC DE LUXE. Все права защищены.</p>
+                <p>Разработка сайта</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
